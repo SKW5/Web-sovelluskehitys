@@ -1,0 +1,22 @@
+body {
+    font-family: "Comic Sans MS", cursive;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    background-color: grey;
+}
+img {
+    border: 3px solid red;
+    border-radius: 10px;
+}
+tr:nth-child(odd) {
+    background-color: red;
+}
+ul {
+    list-style-type: circle;
+}
+ol {
+    list-style-type: square;
+}
