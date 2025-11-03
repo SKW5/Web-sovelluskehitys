@@ -771,3 +771,51 @@ const restaurants = [
 ];
 
 // your code here
+
+function calculateDistance(lat1, lon1, lat2, lon2) {
+  return Math.sqrt(Math.pow(lat2 - lat1, 2) + Math.pow(lon2 - lon1, 2));
+}
+
+navigator.geolocation.getCurrentPosition(success)
+
+function success(position) {
+  const lat = position.coords.latitude;
+  const lang = position.coords.longitude;
+  console.log(lat, lang)
+
+  var restaurantsDistance = [];
+  for (var i = 0; i < restaurants.length; i++) {
+    var r = restaurants[i];
+
+    var rlat = r.location.coordinates[1];
+    var rlng = r.location.coordinates[0];
+
+    var obj = {
+      name: r.name,
+      address: r.address,
+      distance: calculateDistance(lat, lang, rlat, rlng),
+    }
+    restaurantsDistance.push(obj);
+  }
+
+  restaurantsDistance.sort(function (a, b) {
+    return a.distance - b.distance;
+  });
+
+
+var table = document.querySelector('table');
+
+for (let i = 0; i < restaurantsDistance.length; i++) {
+  const tr = document.createElement('tr');
+
+  const nametd = document.createElement('td');
+  nametd.textContent = restaurantsDistance[i].name;
+  tr.appendChild(nametd);
+
+  const addresstd = document.createElement('td');
+  addresstd.textContent = restaurantsDistance[i].address;
+  tr.appendChild(addresstd);
+
+  table.appendChild(tr);
+}
+}
